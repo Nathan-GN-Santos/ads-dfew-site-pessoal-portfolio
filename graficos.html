@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos — Meu Portfólio</title>
+    <link rel="stylesheet" href="CSS/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nathan Gabriel Santos</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="curriculo.html">Currículo</a>
+            <a href="formulario.html">Contato</a>
+            <a href="multimidia.html">Multimídia</a>
+            <a href="graficos.html">Gráficos</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Desenho com Canvas (JavaScript)</h2>
+            <canvas id="meuCanvas" width="400" height="150" style="border:1px solid #dce4dd;"></canvas>
+            <script>
+                const canvas = document.getElementById('meuCanvas');
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#2e6f40';
+                ctx.fillRect(20, 20, 100, 100);
+                ctx.fillStyle = '#1e2923';
+                ctx.font = '16px Montserrat, sans-serif';
+                ctx.fillText('Canvas OK!', 140, 75);
+            </script>
+        </section>
+
+        <section class="card">
+            <h2>Ilustração em SVG Estilizado via CSS</h2>
+            <svg class="svg-demo" width="120" height="120" viewBox="0 0 24 24" aria-label="Ícone Decorativo de Estrela">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+        </section>
+    </main>
+
+  <footer>
+        <p>&copy; 2026 — Nathan Gabriel Santos. Projeto Acadêmico Desenvolvimento Front-End para Web.</p>
+    </footer>
+
+</body>
+</html>
