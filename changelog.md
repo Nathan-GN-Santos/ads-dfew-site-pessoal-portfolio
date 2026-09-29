@@ -32,4 +32,4 @@
 - Impedir que o usuário consiga colocar qualquer ano de nascimento fora do 4 dígitos e afins na página contato.
 - Deixar o design mais "eu".
 - Adicionar mode claro e escuro.
-- Ideia: Na navbar, que está em estilo \ \ \ com diferentes cores, em que cada cor está um botão principal. Ao hover tal botão, sua cor de fundo consome todar Navbar.
+- Ideia: Na navbar, que está em estilo \ \ \ com diferentes cores, em que cada cor está um botão principal. Ao hover tal botão, sua cor de fundo consome todar Navbar. ??
