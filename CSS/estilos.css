@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
+
+/*Variáveis*/
 :root {
-    --cor-primaria: #2e6f40;
-    --cor-primaria-hover: #225330;
-    --cor-texto: #1e2923;
-    --cor-fundo: #f3f6f4;
+    --cor-primaria: #61ada0;
+    --cor-primaria-hover: #248f8d;
+    --cor-texto-escura: #605063;
+    --cor-fundo-claro: #f3f6f4;
     --cor-branca: #ffffff;
     --cor-borda: #dce4dd;
+
+    --cor-fundo-claro: #605063;
 
     /*Functions*/
 
@@ -27,6 +31,15 @@
 
 }
 
+/*Classes*/
+
+.grid-duas-colunas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/*----------------------------------------------------------*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -46,6 +59,11 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    grid-template-areas:
+    "topo topo"
+    "lado lado"
+    "conteudo conteudo"
+    "rodape rodape";
 }
 
 /* Cabeçalho e Navegação */
@@ -54,6 +72,10 @@ header {
     border-bottom: 2px solid var(--cor-borda);
     padding: 20px 10%;
     text-align: center;
+
+    /*.avatar: flex;*/
+    /*justify-content: space-between;*/
+
 }
 
 header h1 {
@@ -65,10 +87,15 @@ header h1 {
 /*Navbar*/
 
 nav {
+    /*/.avatar: relative;*/
+    top: 0;
+    right: 0;
+    left: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
+    height: 100%;
 }
 
 
@@ -180,6 +207,7 @@ h3 {
     height: 140px;
     border-radius: 50%;
     object-fit: cover;
+    align-self: center;
     
 }
 
@@ -188,12 +216,19 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    left: 0;
+}
+
+.tabela-container {
+    width: 100%;
+    overflow-x: auto; 
 }
 
 th, td {
-    padding: 12px 16px;
+    padding: 8px 10px;
     text-align: left;
     border-bottom: 1px solid var(--cor-borda);
+  
 }
 
 th {
@@ -265,9 +300,10 @@ button:hover {
 }
 
 /* Multimídia e Gráficos */
-video, audio, iframe, canvas, svg {
+img,video, audio, iframe, canvas, svg {
     max-width: 100%;
     border-radius: 8px;
+    height: auto;
 }
 
 iframe {
@@ -302,4 +338,38 @@ footer {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/*Organização Mobile*/
+
+@media (min-width: 768px) {
+
+    .grid-duas-colunas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .campo:nth-child(5), /* Assunto */
+    .campo:nth-child(6), /* Preferencia */
+    .campo:nth-child(7), /* Mensagem */
+    .campo-grupo:nth-child(8),
+    .button {
+        grid-column: span 2; 
+    }
+
+    /*Tabelas*/
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
 }
