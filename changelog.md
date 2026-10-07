@@ -33,3 +33,14 @@
 - Deixar o design mais "eu".
 - Adicionar mode claro e escuro.
 - Ideia: Na navbar, que está em estilo \ \ \ com diferentes cores, em que cada cor está um botão principal. Ao hover tal botão, sua cor de fundo consome todar Navbar. ??
+
+### [0.3] - 06 - xx/10/2026 
+
+#### Checklist
+[] Adicionar JS
+[] Feature interativa com JavaScript e persistência em localStorage.
+[] Código em css/estilos.css e js/scripts.js.
+[] Modo claro e escuro
+[] Estilização do site
+[] Formulário com validação e feedback visível ao usuário.
+[] Site publicado em GitHub Pages, Netlify ou Vercel com HTTPS - com todas as páginas no ar.
