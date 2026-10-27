@@ -3,6 +3,8 @@
 
 /*Variáveis*/
 :root {
+
+/*Modo Escuro*/
     --cor-primaria: #61ada0;
     --cor-primaria-hover: #248f8d;
     --cor-texto-escura: #605063;
@@ -14,9 +16,11 @@
     --cor-3: ;
     --cor-4: ;
     --cor-5: ;
-
+    --cor-texto-claro: ;
     --cor-fundo-escuro: #605063;
-    --cor-fundo-claro: #f3f6f4;
+
+
+
 
     /*Functions*/
 
@@ -35,6 +39,12 @@
     --tw-ease: var(--ease-in-out);
     --tw-duration: .3s;
 
+}
+
+/*Modo Claro*/
+[data-theme="light"] {
+    --cor-texto-escura: #333333;
+    --cor-fundo-claro: #f3f6f4;
 }
 
 /*Classes*/
