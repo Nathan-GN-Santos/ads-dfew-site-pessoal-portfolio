@@ -1,0 +1,61 @@
+/* Base page setup */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Prevents scrollbars during the animation */
+  background-color: #ffffff; /* Starting background color */
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.1s ease; /* Seamlessly matches the wave color at the end */
+}
+
+/* Button Styling */
+#wave-btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  z-index: 10; /* Keeps the button clickable and above the background */
+}
+
+/* The Wave Element */
+#wave {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #2c3e50; /* The target color the site will change to */
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none; /* Prevents the invisible wave from blocking clicks */
+  z-index: 1; 
+}
+
+/* Animation class triggered by JavaScript */
+#wave.active {
+  animation: growWave 1.2s forwards ease-in-out;
+}
+
+/* The expanding wave animation */
+@keyframes growWave {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    /* Scale large enough to comfortably cover any screen resolution diagonal */
+    transform: translate(-50%, -50%) scale(400); 
+    opacity: 0; /* Fades out right as the body color changes */
+  }
+}
