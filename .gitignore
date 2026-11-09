@@ -1,0 +1,23 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Temporários
+*.log
+*.tmp
+
+# Dependências 
+node_modules/
+.env
+.env.*
+
+# Binários i
+*.exe
+*.zip
