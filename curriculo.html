@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo — Meu Portfólio</title>
-    <link rel="stylesheet" href="CSS/estilos.css">
-</head>
 
+    <meta name="description" content="Currículo de Nathan: habilidades técnicas, formação acadêmica e experiência profissional.">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f5d43'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='16' font-weight='700' text-anchor='middle' fill='white'%3ENS%3C/text%3E%3C/svg%3E">
+
+    <script>(function(){var t;try{t=localStorage.getItem('portfolio:tema')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})()</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&amp;display=swap">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/scripts.js" defer></script>
+</head>
 <body>
 
-    <header>
-        <h1>Nathan Gabriel Santos</h1>
-        <nav>
-            <a href="index.html">Início</a>
-            <a href="curriculo.html">Currículo</a>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+ 
+    <header class="cabecalho">
+        <button type="button" id="botao-tema" class="tema-botao" aria-pressed="true" aria-label="Alternar para o modo claro">
+            <span class="tema-botao__disco" aria-hidden="true">
+                <svg class="icone icone-sol" viewBox="0 0 24 24" focusable="false">
+                    <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
+                    <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+                <svg class="icone icone-lua" viewBox="0 0 24 24" focusable="false">
+                    <path fill="currentColor" d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.8 6.8 0 0 0 9.8 9.8z"/>
+                </svg>
+            </span>
+        </button>
+       
+        <a class="logo" href="index.html">Nathan G.N. Santos</a>
+        <nav class="menu" aria-label="Principal">
+            <a href="curriculo.html" aria-current="page">Currículo</a>
             <a href="formulario.html">Contato</a>
             <a href="multimidia.html">Multimídia</a>
             <a href="graficos.html">Gráficos</a>
         </nav>
     </header>
 
-    <main>
+    <main id="conteudo" tabindex="-1">
+        <h1 class="titulo-pagina">Currículo</h1>
+
         <section class="card">
             <h2>Habilidades Técnicas</h2>
+
             <ul>
                 <li>HTML5 Semântico e Acessibilidade</li>
                 <li>CSS3 (Flexbox, Grid e Variáveis)</li>
@@ -34,23 +60,25 @@
 
         <section class="card">
             <h2>Formação Acadêmica</h2>
-            <div class="tabela-container"></div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Curso</th>
-                        <th>Instituição</th>
-                        <th>Ano</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Análise e Des. de Sistemas</td>
-                        <td>Centro Universitário Braz Cubas </td>
-                        <td>2027</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="tabela-container" role="region" aria-label="Tabela de formação acadêmica" tabindex="0">
+                <table>
+                    <caption class="sr-only">Formação acadêmica: curso, instituição e ano</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Instituição</th>
+                            <th scope="col">Ano</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>Análise e Des. de Sistemas</td>
+                            <td>Centro Universitário Braz Cubas </td>
+                            <td>2027</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -58,6 +86,7 @@
             <h2>Experiência Profissional</h2>
             <div class="grid-duas-colunas">
                 <article>
+
                     <h3>Projeto Exemplo Aqui</h3>
                     <p>Texto de Exemplo Aqui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua.
@@ -66,6 +95,7 @@
 
 
                 <article>
+
                     <h3>Projeto Exemplo Aqui</h3>
                     <p>Texto de Exemplo Aqui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua.
@@ -73,31 +103,34 @@
                 </article>
 
             </div>
-            <div class="tabela-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Cargo</th>
-                        <th>Empresa</th>
-                        <th>Ano</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Operador de teleatendimento</td>
-                        <td>Winover Call Center </td>
-                        <td>2026 - atual</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="tabela-container" role="region" aria-label="Tabela de experiência profissional" tabindex="0">
+                <table>
+                    <caption class="sr-only">Experiência profissional: cargo, empresa e período</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">Ano</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>Operador de teleatendimento</td>
+                            <td>Winover Call Center </td>
+                            <td>2026 - atual</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
+
     <footer>
+
         <p>&copy; 2026 — Nathan Gabriel Nunes dos Santos. Projeto acadêmico de Desenvolvimento Front-End para Web.</p>
     </footer>
 
 </body>
-
 </html>

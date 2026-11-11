@@ -1,159 +1,526 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+/* =========================================================
+   css/estilos.css — Portfólio acadêmico (CP3)
 
+   ÍNDICE
+   1. Variáveis
+   2. Reset
+   3. Base
+   4. Header / Navegação
+   5. Cards
+   6. Componentes (stacks, perfil, tabelas, botões, avisos, mídia)
+   7. Formulário
+   8. Rodapé
+   9. Utilitários
+   10. Acessibilidade de animações
+   11. Media queries
+   12. Anotações antigas
+   ========================================================= */
+
+
+/* =========================================================
+   1. VARIÁVEIS
+   ========================================================= */
 
 /*Variáveis*/
 :root {
-    --cor-primaria: #61ada0;
-    --cor-primaria-hover: #248f8d;
-    --cor-texto-escura: #605063;
-    --cor-fundo-claro: #f3f6f4;
-    --cor-branca: #ffffff;
-    --cor-borda: #dce4dd;
+    /* Tema escuro */
+    color-scheme: dark;
 
-    --cor-fundo-claro: #605063;
+    /*Modo Escuro*/
+    /* Superfícies e textos */
+    --cor-fundo: #060a08;
+    --cor-superficie: #101914;
+    --cor-superficie-alt: #17241d;
+    --cor-campo-fundo: #0a110d;
+    --cor-texto: #eef4f0;
+    --cor-texto-suave: #b5c6bc;
+    --cor-borda: #33483c;          /* decorativa (cards, divisórias) */
+    --cor-borda-forte: #84a08f;    /* componentes de interface (campos, botões) */
+
+    /* Cor principal (links, títulos, botões, cabeçalho de tabela) */
+    --cor-primaria: #62b887;
+    --cor-primaria-hover: #8fd4ab;
+    --cor-texto-primaria: #04140a; /* texto sobre fundo --cor-primaria */
+
+    /* Header */
+    --cor-header-fundo: #000000;
+    --cor-indicador: #ffffff;      /* sublinhado da página atual (logo) */
+
+    /* Foco, estados e sombra */
+    --cor-foco: #ffd34e;
+    --cor-sucesso: #6fdc9a;
+    --cor-sucesso-fundo: #0f2a1a;
+    --cor-erro: #ff8f86;
+    --cor-erro-fundo: #2d1614;
+    --cor-info: #8fc4ff;
+    --cor-info-fundo: #112238;
+    --cor-sombra: rgba(0, 0, 0, 0.5);
+
+    /* Abas do menu  */
+    --cor-nav-1: #2f5d43;
+    --cor-nav-2: #3e7052;
+    --cor-nav-3: #5b9a73;
+    --cor-nav-4: #8bb89e;
+    /* Hover das abas */
+    --cor-nav-hover-1: #264b36;
+    --cor-nav-hover-2: #335d44;
+    --cor-nav-hover-3: #6aae85;
+    --cor-nav-hover-4: #a1cdb3;
+    /* Texto e sublinahdo das abas */
+    --cor-nav-texto-1: #ffffff;
+    --cor-nav-texto-2: #ffffff;
+    --cor-nav-texto-3: #ffffff;
+    --cor-nav-texto-4: #ffffff;
+
+    /* Botão de tema e onda */
+    --cor-onda: #ffd34e;           /* cor do botão e da onda */
+    --cor-onda-icone: #231b00;     
+    --cor-botao-borda: #f3f6f4;
+
+    /* Canvas (lidas pelo JS com getComputedStyle) */
+    --cor-canvas-forma: var(--cor-primaria);
+    --cor-canvas-texto: var(--cor-texto);
+}
+
+/* Declaração explícita do tema escuro (o JS troca o atributo data-theme no <html>) */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+/*Modo Claro*/
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --cor-fundo: #eef4f0;
+    --cor-superficie: #ffffff;
+    --cor-superficie-alt: #e6efe9;
+    --cor-campo-fundo: #ffffff;
+    --cor-texto: #12201a;
+    --cor-texto-suave: #3b5045;
+    --cor-borda: #c3d3c9;
+    --cor-borda-forte: #5b7466;
+
+    --cor-primaria: #1f6b43;
+    --cor-primaria-hover: #14502f;
+    --cor-texto-primaria: #ffffff;
+
+    --cor-header-fundo: #dce8e0;
+    --cor-indicador: #12201a;
+
+    --cor-foco: #0b57d0;
+    --cor-sucesso: #17703f;
+    --cor-sucesso-fundo: #e3f5ea;
+    --cor-erro: #b3261e;
+    --cor-erro-fundo: #fdecea;
+    --cor-info: #0b57d0;
+    --cor-info-fundo: #e4eefc;
+    --cor-sombra: rgba(20, 40, 28, 0.12);
+
+    --cor-botao-borda: #12201a;
+}
+
+/* Medidas, durações e curvas  */
+:root {
+    /* Tipografia */
+    --fonte-base: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+    --fonte-h1: clamp(1.6rem, 1.3rem + 1.5vw, 2.25rem);
+    --fonte-h2: clamp(1.2rem, 1.1rem + 0.6vw, 1.5rem);
+    --fonte-nav: 0.8125rem;
+    --fonte-logo: 1.05rem;
+
+    /* Espaçamentos */
+    --espaco-1: 0.25rem;
+    --espaco-2: 0.5rem;
+    --espaco-3: 0.75rem;
+    --espaco-4: 1rem;
+    --espaco-5: 1.5rem;
+    --espaco-6: 2rem;
+    --espaco-card: 1.25rem;
+
+    /* Raios */
+    --raio-sm: 6px;
+    --raio-md: 12px;
+    --raio-redondo: 50%;
+
+    /* Larguras e alturas */
+    --largura-max: 900px;
+    --altura-header: 3rem;
+    --alvo-minimo: 44px;           /* tamanho mínimo de botões e links principais */
+    --proporcao-mapa: 4 / 3;
+    --proporcao-video: 16 / 9;
 
     /*Functions*/
 
     /* Timing & Curves */
-    --tempo-transicao: 0.5s;
+    --tempo-transicao: 10.0s;
     --curva-transicao: ease-in-out;
-    
+
     /* Full reusable transition shorthand */
     --transicao-suave: background-color var(--tempo-transicao) var(--curva-transicao),
                         color var(--tempo-transicao) var(--curva-transicao),
                         transform var(--tempo-transicao) var(--curva-transicao);
 
-    --default-transition-duration: .15s;
-    --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    --tempo-card: 0.3s;
+    --tempo-rapido: 0.2s;
+    --curva-saida: cubic-bezier(0.22, 0.8, 0.3, 1);
 
-    --tw-ease: var(--ease-in-out);
-    --tw-duration: .3s;
+    /* Mensagens (aviso de sucesso / rascunho) */
+    --tempo-msg: 0.35s;
+    --deslocamento-msg: 12px;
 
-}
+    /* Menu: animação de hover/foco */
+    --nav-deslocamento: 8px;       /* quanto a aba desliza para a ESQUERDA */
+    --nav-duracao: 0.25s;
+    --nav-curva: ease-out;
 
-/*Classes*/
+    /* Menu: geometria das abas (mudam nas media queries) */
+    --nav-inclinacao: 0px;         /* largura horizontal da diagonal esquerda */
+    --nav-px: 0.5rem;              /* espaço interno lateral da aba */
+    --nav-extra-direita: 0px;      /* quanto a última aba avança além da borda da tela */
+    --nav-indicador-altura: 4px;   /* sublinhado da página atual */
 
-.grid-duas-colunas {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    /* Onda do botão de tema  */
+    --onda-duracao: 800ms;
 }
 
 /*----------------------------------------------------------*/
+
+
+/* =========================================================
+   2. RESET
+   ========================================================= */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Garante que o atributo hidden esconda mesmo com display definido em classes */
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   3. BASE
+   ========================================================= */
+html {
+    -webkit-text-size-adjust: 100%;
+    background-color: var(--cor-fundo);
+}
+
 ::selection {
     background-color: var(--cor-primaria);
-    color: var(--cor-branca);
+    color: var(--cor-texto-primaria);
 }
 
 body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     font-family: 'Montserrat', sans-serif;
+    font-size: var(--fonte-base);
     line-height: 1.6;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    grid-template-areas:
-    "topo topo"
-    "lado lado"
-    "conteudo conteudo"
-    "rodape rodape";
+    overflow-wrap: break-word;
+}
+
+/* Foco visível em todos os elementos interativos  */
+:focus-visible {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 2px;
+}
+
+h1 {
+    color: var(--cor-primaria);
+    font-size: var(--fonte-h1);
+    line-height: 1.2;
+}
+
+h2,
+.titulo-card {
+    color: var(--cor-primaria);
+    margin-bottom: 16px;
+    font-size: var(--fonte-h2);
+    line-height: 1.3;
+}
+
+h3 {
+    color: var(--cor-primaria-hover);
+}
+
+ul,
+ol {
+    padding-left: 1.25rem;
+}
+
+main a {
+    color: var(--cor-primaria);
+    text-underline-offset: 0.2em;
+}
+
+main a:hover {
+    color: var(--cor-primaria-hover);
+}
+
+/* Imagens e mídias fluidas */
+img, video, audio, iframe, canvas, svg {
+    max-width: 100%;
+    border-radius: 8px;
+    height: auto;
+}
+
+
+/* =========================================================
+   4. HEADER / NAVEGAÇÃO
+   ========================================================= */
+
+/* Link "Pular para o conteúdo": 1º elemento focável, só aparece com foco */
+.pular-conteudo {
+    position: absolute;
+    left: var(--espaco-3);
+    top: -5rem;
+    z-index: 200;
+    padding: var(--espaco-3) var(--espaco-4);
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-primaria);
+    font-weight: 700;
+    border-radius: var(--raio-sm);
+    text-decoration: none;
+}
+
+.pular-conteudo:focus {
+    top: var(--espaco-3);
 }
 
 /* Cabeçalho e Navegação */
-header {
-    background-color: var(--cor-branca);
-    border-bottom: 2px solid var(--cor-borda);
-    padding: 20px 10%;
-    text-align: center;
-
-    /*.avatar: flex;*/
-    /*justify-content: space-between;*/
-
+.cabecalho {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    background-color: var(--cor-header-fundo);
+    border-bottom: 1px solid var(--cor-borda);
+    overflow-x: clip; 
 }
 
-header h1 {
-    color: var(--cor-primaria);
-    font-size: 1.8rem;
-    margin-bottom: 12px;
+/* Botão de tema: alvo de 44px com um disco pequeno dentro */
+.tema-botao {
+    flex: 0 0 auto;
+    align-self: center;
+    margin-left: var(--espaco-2);
+    width: var(--alvo-minimo);
+    height: var(--alvo-minimo);
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: var(--raio-redondo);
+    cursor: pointer;
+}
+
+.tema-botao__disco {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    background-color: var(--cor-onda);
+    color: var(--cor-onda-icone);
+    border: 2px solid var(--cor-botao-borda);
+    border-radius: var(--raio-redondo);
+}
+
+.icone {
+    width: 16px;
+    height: 16px;
+    border-radius: 0;
+}
+
+/* Escuro mostra o sol (ação: ir para o claro); claro mostra a lua */
+.icone-lua {
+    display: none;
+}
+
+:root[data-theme="light"] .icone-sol {
+    display: none;
+}
+
+:root[data-theme="light"] .icone-lua {
+    display: block;
+}
+
+/* Nome/logo = link para a página inicial */
+.logo {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    min-height: var(--altura-header);
+    padding: 0 var(--espaco-3);
+    color: var(--cor-texto);
+    font-size: var(--fonte-logo);
+    font-weight: 300;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 /*Navbar*/
+.menu {
+    flex: 1 1 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: var(--nav-inclinacao);
+}
 
-nav {
-    /*/.avatar: relative;*/
-    top: 0;
-    right: 0;
-    left: 0;
+.menu a {
+    /* variáveis de cada aba  */
+    position: relative;
+    z-index: calc(var(--i, 1) * 2);
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    align-items: center;
     justify-content: center;
-    height: 100%;
-}
-
-
-nav a {
-    color: var(--cor-texto);
-    background-color: var(--cor-primaria); 
-    font-weight: 600;
-    padding: 8px 14px;
-    border-radius: 6px;
+    min-height: max(var(--altura-header), var(--alvo-minimo));
+    padding: 0 var(--nav-px);
+    color: var(--nav-fg);
+    font-size: var(--fonte-nav);
+    font-weight: 400;
+    text-align: center;
     text-decoration: none;
-    display: inline-block;
+    white-space: nowrap;
+    transition: transform var(--nav-duracao) var(--nav-curva);
+}
+
+/* O formato (paralelogramo) e a cor ficam no ::before, assim o contorno de foco do <a> fica retangular e dentro da aba */
+.menu a::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--nav-inclinacao) * -1);
+    right: calc(var(--nav-deslocamento) * -1); /* sobra escondida sob a vizinha: sem vão ao deslizar */
+    background-color: var(--nav-bg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nav-inclinacao) 100%);
+    transition: background-color var(--nav-duracao) var(--nav-curva);
+}
+
+.menu a:last-child::before {
+    right: calc(var(--nav-extra-direita) * -1);
+}
+
+.menu a:nth-child(1) { --i: 1; --nav-bg: var(--cor-nav-1); --nav-bg-hover: var(--cor-nav-hover-1); --nav-fg: var(--cor-nav-texto-1); }
+.menu a:nth-child(2) { --i: 2; --nav-bg: var(--cor-nav-2); --nav-bg-hover: var(--cor-nav-hover-2); --nav-fg: var(--cor-nav-texto-2); }
+.menu a:nth-child(3) { --i: 3; --nav-bg: var(--cor-nav-3); --nav-bg-hover: var(--cor-nav-hover-3); --nav-fg: var(--cor-nav-texto-3); }
+.menu a:nth-child(4) { --i: 4; --nav-bg: var(--cor-nav-4); --nav-bg-hover: var(--cor-nav-hover-4); --nav-fg: var(--cor-nav-texto-4); }
+
+/* Hover/foco: muda a cor (sempre) e fica acima da vizinha da esquerda, mas abaixo da da direita (preserva a diagonal) */
+.menu a:hover,
+.menu a:focus-visible {
+    z-index: calc(var(--i, 1) * 2 + 1);
+}
+
+.menu a:hover::before,
+.menu a:focus-visible::before {
+    background-color: var(--nav-bg-hover);
+}
+
+/* Foco por teclado */
+.menu a:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: -6px;
+}
+
+/* Indicador da página atual (logo e abas) */
+.menu a[aria-current="page"] {
+    font-weight: 700;
+}
+
+.menu a[aria-current="page"]::after,
+.logo[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--nav-indicador-altura);
+    background-color: currentColor;
+}
+
+.logo[aria-current="page"]::after {
+    background-color: var(--cor-indicador);
+}
+
+/* Animação de deslize (só sem prefers-reduced-motion). 
+   Foco por teclado: sempre. Hover: só em dispositivos com hover.  */
+@media (prefers-reduced-motion: no-preference) {
+    .menu a:focus-visible {
+        transform: translateX(calc(var(--nav-deslocamento) * -1));
+    }
+} 
+
+/* */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .menu a:hover {
+        transform: translateX(calc(var(--nav-deslocamento) * -1));
+    }
+} 
+
+/* Onda do botão de tema */
+.onda {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: var(--cor-onda);
+    pointer-events: auto; /* bloqueia cliques durante a animação */
 }
 
 
-nav a:hover {
-    background-color: var(--cor-primaria-hover);
-}
-
-nav a:focus {
-    outline: 2px solid var(--cor-primaria);
-    outline-offset: 2px;
-}
+/* =========================================================
+   5. CARDS
+   ========================================================= */
 
 /* Conteúdo Principal */
 main {
     flex: 1;
-    max-width: 900px;
+    max-width: var(--largura-max);
     width: 90%;
-    margin: 30px auto;
+    margin: var(--espaco-5) auto;
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
+main:focus {
+    outline: none; /* foco programático do link "Pular para o conteúdo" */
+}
+
+.titulo-pagina {
+    margin-bottom: 0;
+}
+
 .card {
-    background-color: var(--cor-branca);
+    background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
-    border-radius: 12px;
-    padding: 28px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: var(--raio-md);
+    padding: var(--espaco-card);
+    box-shadow: 0 4px 12px var(--cor-sombra);
+    transition: transform var(--tempo-card) ease, box-shadow var(--tempo-card) ease;
 }
 
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
+/*  @media (hover: hover) and (prefers-reduced-motion: no-preference) */
+{
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px var(--cor-sombra);
+    }
+} 
 
-h2 {
-    color: var(--cor-primaria);
-    margin-bottom: 16px;
-    font-size: 1.4rem;
-}
-
-h3 {
-    color: var(--cor-primaria-hover);
-   
-}
+/* =========================================================
+   6. COMPONENTES
+   ========================================================= */
 
 /*Parte das Stacks*/
 
@@ -178,12 +545,14 @@ h3 {
     width: 65px;
     height: 65px;
     object-fit: contain;
-    transition: transform 0.2s ease;
+    transition: transform var(--tempo-rapido) ease;
 }
 
-/* Efeito sutil ao passar o mouse por cima do ícone */
-.stack-item img:hover {
-    transform: scale(1.12);
+/* Efeito sutil ao passar o mouse por cima do ícone  */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .stack-item img:hover {
+        transform: scale(1.12);
+    }
 }
 
 .stack-item p {
@@ -191,8 +560,6 @@ h3 {
     font-size: 0.95rem;
     color: var(--cor-texto);
 }
-
-
 
 /* Elementos de Perfil */
 .perfil-container {
@@ -205,10 +572,9 @@ h3 {
 .avatar {
     width: 140px;
     height: 140px;
-    border-radius: 50%;
+    border-radius: var(--raio-redondo);
     object-fit: cover;
     align-self: center;
-    
 }
 
 /* Tabelas */
@@ -216,34 +582,199 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    left: 0;
 }
 
+/* Contêiner rolável (recebe tabindex="0", role="region" e aria-label no HTML) */
 .tabela-container {
     width: 100%;
-    overflow-x: auto; 
+    overflow-x: auto;
 }
 
 th, td {
     padding: 8px 10px;
     text-align: left;
     border-bottom: 1px solid var(--cor-borda);
-  
 }
 
 th {
     background-color: var(--cor-primaria);
-    color: var(--cor-branca);
+    color: var(--cor-texto-primaria);
 }
 
 tbody tr:nth-child(even) {
-    background-color: var(--cor-fundo);
+    background-color: var(--cor-superficie-alt);
 }
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaco-2);
+    min-height: var(--alvo-minimo);
+    padding: 0.6rem 1.25rem;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-primaria);
+    border: 2px solid transparent;
+    border-radius: var(--raio-sm);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--tempo-card) ease;
+}
+
+.btn:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+.btn--secundario {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border-color: var(--cor-borda-forte);
+}
+
+.btn--secundario:hover {
+    background-color: var(--cor-superficie-alt);
+}
+
+/* Avisos (sucesso do formulário, rascunho restaurado) */
+.aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espaco-3);
+    margin-bottom: var(--espaco-4);
+    padding: var(--espaco-3) var(--espaco-4);
+    background-color: var(--aviso-fundo);
+    border: 2px solid var(--aviso-cor);
+    border-left-width: 6px;
+    border-radius: var(--raio-sm);
+}
+
+.aviso--sucesso {
+    --aviso-cor: var(--cor-sucesso);
+    --aviso-fundo: var(--cor-sucesso-fundo);
+}
+
+.aviso--info {
+    --aviso-cor: var(--cor-info);
+    --aviso-fundo: var(--cor-info-fundo);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.aviso__icone {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    color: var(--aviso-cor);
+}
+
+.aviso__texto {
+    flex: 1 1 12rem;
+    font-weight: 600;
+}
+
+.aviso__fechar {
+    flex: 0 0 auto;
+    display: inline-grid;
+    place-items: center;
+    width: var(--alvo-minimo);
+    height: var(--alvo-minimo);
+    margin: calc(var(--espaco-2) * -1) calc(var(--espaco-2) * -1) 0 0;
+    background: transparent;
+    color: var(--cor-texto);
+    border: 0;
+    border-radius: var(--raio-sm);
+    cursor: pointer;
+}
+
+.aviso__fechar:hover {
+    background-color: var(--cor-superficie-alt);
+}
+
+/* Animação de entrada dos avisos */
+@media (prefers-reduced-motion: no-preference) {
+    .aviso {
+        animation: aviso-entrada var(--tempo-msg) var(--curva-saida) both;
+    }
+
+    @keyframes aviso-entrada {
+        from {
+            opacity: 0;
+            transform: translateY(calc(var(--deslocamento-msg) * -1));
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Multimídia e Gráficos */
+iframe {
+    width: 100%;
+    aspect-ratio: var(--proporcao-mapa);
+    height: auto;
+    border: none;
+}
+
+video {
+    width: 100%;
+    aspect-ratio: var(--proporcao-video);
+    object-fit: contain;
+    background-color: var(--cor-header-fundo);
+}
+
+canvas {
+    border: 1px solid var(--cor-borda-forte);
+}
+
+.svg-demo {
+    width: 120px;
+    height: 120px;
+    fill: var(--cor-primaria);
+    transition: fill var(--tempo-card) ease, transform var(--tempo-card) ease;
+}
+
+.svg-demo:hover {
+    fill: var(--cor-primaria-hover);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .svg-demo:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* Transcrição do vídeo */
+.transcricao {
+    margin-top: var(--espaco-4);
+}
+
+.transcricao summary {
+    min-height: var(--alvo-minimo);
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.transcricao p {
+    margin-top: var(--espaco-2);
+    color: var(--cor-texto-suave);
+}
+
+
+/* =========================================================
+   7. FORMULÁRIO
+   ========================================================= */
 
 /* Formulários */
 form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 16px;
 }
 
@@ -251,6 +782,30 @@ form {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 0;
+}
+
+fieldset.campo {
+    border: 0;
+}
+
+legend,
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+legend {
+    padding: 0;
+}
+
+.obrigatorio {
+    color: var(--cor-erro);
+}
+
+.rotulo-extra {
+    font-weight: 400;
+    color: var(--cor-texto-suave);
 }
 
 .campo-grupo {
@@ -260,9 +815,23 @@ form {
     flex-wrap: wrap;
 }
 
-label {
-    font-weight: 600;
-    font-size: 0.9rem;
+/* Rádio e checkbox com alvo grande */
+.opcao {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    min-height: var(--alvo-minimo);
+    font-weight: 400;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--cor-primaria);
+    cursor: pointer;
 }
 
 input[type="text"],
@@ -272,77 +841,236 @@ input[type="date"],
 select,
 textarea {
     width: 100%;
+    min-height: var(--alvo-minimo);
     padding: 10px 12px;
-    border: 1px solid var(--cor-borda);
-    border-radius: 6px;
+    background-color: var(--cor-campo-fundo);
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda-forte);
+    border-radius: var(--raio-sm);
     font-family: inherit;
     font-size: 0.95rem;
 }
 
-input:focus, select:focus, textarea:focus {
-    outline: 2px solid var(--cor-primaria);
+textarea {
+    min-height: 8rem;
+    resize: vertical;
 }
 
-button {
-    background-color: var(--cor-primaria);
-    color: var(--cor-branca);
-    border: none;
-    padding: 12px 20px;
-    font-size: 1rem;
+::placeholder {
+    color: var(--cor-texto-suave);
+    opacity: 1;
+}
+
+/* Campo com erro */
+[aria-invalid="true"] {
+    border-color: var(--cor-erro);
+    box-shadow: inset 0 0 0 1px var(--cor-erro);
+}
+
+.campo__erro {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    color: var(--cor-erro);
+    font-size: 0.875rem;
     font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: var(--cor-primaria-hover);
+.campo__erro::before {
+    content: "!";
+    content: "!" / "";
+    flex: 0 0 auto;
+    display: inline-grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.1rem;
+    background-color: var(--cor-erro);
+    color: var(--cor-superficie);
+    border-radius: var(--raio-redondo);
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
 }
 
-/* Multimídia e Gráficos */
-img,video, audio, iframe, canvas, svg {
-    max-width: 100%;
-    border-radius: 8px;
-    height: auto;
+.contador {
+    color: var(--cor-texto-suave);
+    font-size: 0.85rem;
+    text-align: right;
 }
 
-iframe {
-    width: 100%;
-    height: 300px;
-    border: none;
+.contador--excedido {
+    color: var(--cor-erro);
+    font-weight: 700;
 }
 
-.svg-demo {
-    fill: var(--cor-primaria);
-    transition: fill 0.3s ease, transform 0.3s ease;
+.nota {
+    color: var(--cor-texto-suave);
+    font-size: 0.875rem;
 }
 
-.svg-demo:hover {
-    fill: var(--cor-primaria-hover);
-    transform: scale(1.05);
+/* Campos que ocupam a linha toda */
+.campo--cheio {
+    grid-column: 1 / -1;
 }
+
+/* Histórico de mensagens (localStorage) */
+.historico {
+    display: grid;
+    gap: var(--espaco-3);
+    padding-left: 0;
+    margin-bottom: var(--espaco-4);
+    list-style: none;
+}
+
+.historico__item {
+    padding: var(--espaco-3) var(--espaco-4);
+    background-color: var(--cor-superficie-alt);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-sm);
+}
+
+.historico__topo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-1) var(--espaco-3);
+    align-items: baseline;
+}
+
+.historico__assunto,
+.historico__data {
+    color: var(--cor-texto-suave);
+    font-size: 0.85rem;
+}
+
+.historico__mensagem {
+    margin-top: var(--espaco-2);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   8. RODAPÉ
+   ========================================================= */
 
 /* Rodapé */
 footer {
-    background-color: var(--cor-branca);
+    background-color: var(--cor-superficie);
     border-top: 1px solid var(--cor-borda);
+    color: var(--cor-texto-suave);
     text-align: center;
     padding: 20px;
     font-size: 0.85rem;
     margin-top: auto;
 }
 
+
+/* =========================================================
+   9. UTILITÁRIOS
+   ========================================================= */
+
+/*Classes*/
+
+.grid-duas-colunas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Texto só para leitores de tela  */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* =========================================================
+   10. ACESSIBILIDADE DE ANIMAÇÕES
+   ========================================================= */
+
 /* Acessibilidade de Animações */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Sem movimento no menu: fica só a mudança de cor */
+    .menu a {
+        transform: none !important;
     }
 }
 
+
+/* =========================================================
+   11. MEDIA QUERIES (mobile-first)
+   ========================================================= */
+
 /*Organização Mobile*/
 
-@media (min-width: 768px) {
+/* Até 479px: menu em grade 2x2, abas retas, sem deslize */
+@media (max-width: 29.99rem) {
+    :root {
+        --nav-deslocamento: 0px;
+    }
+}
+
+/* A partir de 480px: menu em uma linha abaixo do nome, com abas inclinadas */
+@media (min-width: 30rem) {
+    :root {
+        --nav-inclinacao: 22px;
+        --nav-deslocamento: 6px;
+        --nav-extra-direita: 3rem;
+    }
+
+    .menu {
+        display: flex;
+    }
+
+    .menu a {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+}
+
+/* A partir de 768px: header em uma linha só (nome à esquerda, abas à direita) */
+@media (min-width: 48rem) {
+    :root {
+        --nav-inclinacao: 40px;
+        --nav-deslocamento: 8px;
+        --nav-px: clamp(0.75rem, 2.4vw, 1.75rem);
+        --fonte-nav: 0.9rem;
+        --fonte-logo: 1.1rem;
+        --espaco-card: 1.75rem;
+        --proporcao-mapa: 16 / 9;
+    }
+
+    .cabecalho {
+        flex-wrap: nowrap;
+    }
+
+    .logo {
+        flex: 0 0 auto;
+    }
+
+    .menu {
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    .menu a {
+        flex: 0 0 auto;
+    }
 
     .grid-duas-colunas {
         display: grid;
@@ -350,26 +1078,15 @@ footer {
         gap: 20px;
     }
 
+    /* Formulário em 2 colunas */
     form {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 16px;
     }
-
-    .campo:nth-child(5), /* Assunto */
-    .campo:nth-child(6), /* Preferencia */
-    .campo:nth-child(7), /* Mensagem */
-    .campo-grupo:nth-child(8),
-    .button {
-        grid-column: span 2; 
-    }
-
-    /*Tabelas*/
-
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
 }
+
+
+/* =========================================================
+   12. ANOTAÇÕES
+   ========================================================= */

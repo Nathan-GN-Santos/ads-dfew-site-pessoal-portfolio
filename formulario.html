@@ -4,78 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato — Meu Portfólio</title>
-    <link rel="stylesheet" href="CSS/estilos.css">
+
+    <meta name="description" content="Formulário de contato do portfólio de Nathan, com validação e histórico salvo no navegador.">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f5d43'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='16' font-weight='700' text-anchor='middle' fill='white'%3ENS%3C/text%3E%3C/svg%3E">
+
+    <script>(function(){var t;try{t=localStorage.getItem('portfolio:tema')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})()</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&amp;display=swap">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/scripts.js" defer></script>
 </head>
 <body>
 
-    <header>
-        <h1>Nathan Gabriel Santos</h1>
-        <nav>
-            <a href="index.html">Início</a>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+
+    <header class="cabecalho">
+        <button type="button" id="botao-tema" class="tema-botao" aria-pressed="true" aria-label="Alternar para o modo claro">
+            <span class="tema-botao__disco" aria-hidden="true">
+                <svg class="icone icone-sol" viewBox="0 0 24 24" focusable="false">
+                    <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
+                    <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+                <svg class="icone icone-lua" viewBox="0 0 24 24" focusable="false">
+                    <path fill="currentColor" d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.8 6.8 0 0 0 9.8 9.8z"/>
+                </svg>
+            </span>
+        </button>
+
+        <a class="logo" href="index.html">Nathan G.N. Santos</a>
+        <nav class="menu" aria-label="Principal">
             <a href="curriculo.html">Currículo</a>
-            <a href="formulario.html">Contato</a>
+            <a href="formulario.html" aria-current="page">Contato</a>
             <a href="multimidia.html">Multimídia</a>
             <a href="graficos.html">Gráficos</a>
         </nav>
     </header>
 
-    <main>
+    <main id="conteudo" tabindex="-1">
+        <h1 class="titulo-pagina">Contato</h1>
+
         <section class="card">
             <h2>Formulário de Contato</h2>
-            <form action="#" method="post">
+
+
+            <div id="msg-sucesso" class="aviso aviso--sucesso" role="status" tabindex="-1" hidden>
+                <svg class="aviso__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="aviso__texto" id="msg-sucesso-texto"></p>
+                <button type="button" id="fechar-sucesso" class="aviso__fechar" aria-label="Fechar mensagem de sucesso">
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </button>
+            </div>
+
+
+            <div id="aviso-rascunho" class="aviso aviso--info" role="status" hidden>
+                <svg class="aviso__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p class="aviso__texto">Rascunho restaurado</p>
+                <button type="button" id="descartar-rascunho" class="btn btn--secundario">Descartar</button>
+            </div>
+
+            <p class="nota">Campos marcados com * são obrigatórios.</p>
+
+            <form id="form-contato" action="#" method="post" novalidate>
                 <div class="campo">
-                    <label for="nome">Nome Completo:</label>
-                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+                    <label for="nome">Nome Completo: <span class="obrigatorio" aria-hidden="true">*</span></label>
+                    <input type="text" id="nome" name="nome" required autocomplete="name" placeholder="Digite seu nome" aria-describedby="nome-erro">
+                    <p class="campo__erro" id="nome-erro" hidden></p>
                 </div>
 
                 <div class="campo">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                    <label for="email">E-mail: <span class="obrigatorio" aria-hidden="true">*</span></label>
+                    <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" placeholder="seuemail@exemplo.com" aria-describedby="email-erro">
+                    <p class="campo__erro" id="email-erro" hidden></p>
                 </div>
 
                 <div class="campo">
-                    <label for="telefone">Telefone (opcional):</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999">
+                    <label for="telefone">Telefone <span class="rotulo-extra" id="telefone-opcional">(opcional)</span>:</label>
+                    <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(11) 99999-9999" aria-describedby="telefone-erro">
+                    <p class="campo__erro" id="telefone-erro" hidden></p>
                 </div>
 
                 <div class="campo">
                     <label for="data_contato">Data preferida para retorno:</label>
-                    <input type="date" id="data_contato" name="data_contato">
+                    <input type="date" id="data_contato" name="data_contato" aria-describedby="data_contato-erro">
+                    <p class="campo__erro" id="data_contato-erro" hidden></p>
                 </div>
 
-                <div class="campo">
-                    <label for="assunto">Assunto:</label>
-                    <select id="assunto" name="assunto" required>
+                <div class="campo campo--cheio">
+                    <label for="assunto">Assunto: <span class="obrigatorio" aria-hidden="true">*</span></label>
+                    <select id="assunto" name="assunto" required aria-describedby="assunto-erro">
                         <option value="">Selecione um assunto</option>
-                        <option value="orcamento">Proposta / Oportunidade</option>
+                        <option value="proposta">Proposta / Oportunidade</option>
                         <option value="duvida">Dúvida</option>
                         <option value="outros">Outros</option>
                     </select>
+                    <p class="campo__erro" id="assunto-erro" hidden></p>
                 </div>
 
-                <div class="campo">
-                    <label>Preferência de Resposta:</label>
+                <fieldset class="campo campo--cheio">
+                    <legend>Preferência de Resposta:</legend>
                     <div class="campo-grupo">
-                        <label><input type="radio" name="preferencia" value="email" checked> E-mail</label>
-                        <label><input type="radio" name="preferencia" value="whatsapp"> WhatsApp</label>
+                        <label class="opcao"><input type="radio" name="preferencia" value="email" checked> E-mail</label>
+                        <label class="opcao"><input type="radio" name="preferencia" value="whatsapp"> WhatsApp</label>
                     </div>
+                </fieldset>
+
+                <div class="campo campo--cheio">
+                    <label for="mensagem">Mensagem: <span class="obrigatorio" aria-hidden="true">*</span></label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Escreva sua mensagem aqui..." aria-describedby="mensagem-contador mensagem-erro"></textarea>
+                    <p class="contador" id="mensagem-contador">0 / 1000 caracteres</p>
+                    <p class="campo__erro" id="mensagem-erro" hidden></p>
                 </div>
 
-                <div class="campo">
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Escreva sua mensagem aqui..."></textarea>
+                <div class="campo-grupo campo--cheio">
+                    <label class="opcao"><input type="checkbox" id="newsletter" name="newsletter" value="sim"> Desejo receber atualizações por e-mail</label>
                 </div>
 
-                <div class="campo-grupo">
-                    <label><input type="checkbox" id="newsletter" name="newsletter" value="sim"> Desejo receber atualizações por e-mail</label>
-                </div>
-
-                <button type="submit">Enviar Mensagem</button>
+                <button type="submit" class="btn campo--cheio">Enviar Mensagem</button>
             </form>
+
+
+            <p class="nota">Demonstração acadêmica: a mensagem fica salva apenas neste navegador.</p>
+        </section>
+
+        <section class="card">
+            <h2 id="historico-titulo" tabindex="-1">Mensagens enviadas neste navegador</h2>
+            <p class="nota" id="historico-vazio">Nenhuma mensagem enviada ainda.</p>
+            <ol class="historico" id="historico-lista" hidden></ol>
+            <p class="campo__erro" id="historico-erro" role="status" hidden></p>
+            <button type="button" id="limpar-historico" class="btn btn--secundario" hidden>Limpar histórico</button>
         </section>
     </main>
 
-     <footer>
+
+    <footer>
+
         <p>&copy; 2026 — Nathan Gabriel Nunes dos Santos. Projeto acadêmico de Desenvolvimento Front-End para Web.</p>
     </footer>
 
