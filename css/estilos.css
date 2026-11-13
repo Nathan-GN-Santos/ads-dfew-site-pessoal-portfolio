@@ -23,100 +23,89 @@
 
 /*Variáveis*/
 :root {
-    /* Tema escuro */
     color-scheme: dark;
 
     /*Modo Escuro*/
-    /* Superfícies e textos */
-    --cor-fundo: #060a08;
-    --cor-superficie: #101914;
-    --cor-superficie-alt: #17241d;
-    --cor-campo-fundo: #0a110d;
-    --cor-texto: #eef4f0;
-    --cor-texto-suave: #b5c6bc;
-    --cor-borda: #33483c;          /* decorativa (cards, divisórias) */
-    --cor-borda-forte: #84a08f;    /* componentes de interface (campos, botões) */
+    --cor-fundo: #070b12;
+    --cor-superficie: #0f1722;
+    --cor-superficie-alt: #16212f;
+    --cor-campo-fundo: #0a111a;
+    --cor-texto: #eef3f9;
+    --cor-texto-suave: #b2c0d1;
+    --cor-borda: #2c3e55;
+    --cor-borda-forte: #7f9bbd;
 
-    /* Cor principal (links, títulos, botões, cabeçalho de tabela) */
-    --cor-primaria: #62b887;
-    --cor-primaria-hover: #8fd4ab;
-    --cor-texto-primaria: #04140a; /* texto sobre fundo --cor-primaria */
+    --cor-primaria: #6cb6ff;
+    --cor-primaria-hover: #a3d3ff;
+    --cor-texto-primaria: #04121f;
 
-    /* Header */
-    --cor-header-fundo: #000000;
-    --cor-indicador: #ffffff;      /* sublinhado da página atual (logo) */
+    --cor-header-fundo: #02060b;
+    --cor-indicador: #ffffff;
 
-    /* Foco, estados e sombra */
-    --cor-foco: #ffd34e;
-    --cor-sucesso: #6fdc9a;
-    --cor-sucesso-fundo: #0f2a1a;
+    --cor-foco: #ffb454;
+    --cor-sucesso: #74dca0;
+    --cor-sucesso-fundo: #0f2a24;
     --cor-erro: #ff8f86;
-    --cor-erro-fundo: #2d1614;
+    --cor-erro-fundo: #2d1620;
     --cor-info: #8fc4ff;
     --cor-info-fundo: #112238;
     --cor-sombra: rgba(0, 0, 0, 0.5);
 
-    /* Abas do menu  */
-    --cor-nav-1: #2f5d43;
-    --cor-nav-2: #3e7052;
-    --cor-nav-3: #5b9a73;
-    --cor-nav-4: #8bb89e;
+    /* Abas do menu */
+    --cor-nav-1: #1b4b82;
+    --cor-nav-2: #2a64a8;
+    --cor-nav-3: #5b9bd5;
+    --cor-nav-4: #79a9d3;
     /* Hover das abas */
-    --cor-nav-hover-1: #264b36;
-    --cor-nav-hover-2: #335d44;
-    --cor-nav-hover-3: #6aae85;
-    --cor-nav-hover-4: #a1cdb3;
-    /* Texto e sublinahdo das abas */
+    --cor-nav-hover-1: #0c2a4d;
+    --cor-nav-hover-2: #0e2f55;
+    --cor-nav-hover-3: #0c2a4d;
+    --cor-nav-hover-4: #0e2f55;
+    /* Texto e sublinhado das abas */
     --cor-nav-texto-1: #ffffff;
     --cor-nav-texto-2: #ffffff;
     --cor-nav-texto-3: #ffffff;
     --cor-nav-texto-4: #ffffff;
 
     /* Botão de tema e onda */
-    --cor-onda: #ffd34e;           /* cor do botão e da onda */
-    --cor-onda-icone: #231b00;     
-    --cor-botao-borda: #f3f6f4;
+    --cor-onda: #4cc9f0;
+    --cor-onda-icone: #04202b;
+    --cor-botao-borda: #eaf2fb;
 
-    /* Canvas (lidas pelo JS com getComputedStyle) */
     --cor-canvas-forma: var(--cor-primaria);
     --cor-canvas-texto: var(--cor-texto);
-}
-
-/* Declaração explícita do tema escuro (o JS troca o atributo data-theme no <html>) */
-:root[data-theme="dark"] {
-    color-scheme: dark;
 }
 
 /*Modo Claro*/
 :root[data-theme="light"] {
     color-scheme: light;
 
-    --cor-fundo: #eef4f0;
+    --cor-fundo: #eef3f9;
     --cor-superficie: #ffffff;
-    --cor-superficie-alt: #e6efe9;
+    --cor-superficie-alt: #e5edf6;
     --cor-campo-fundo: #ffffff;
-    --cor-texto: #12201a;
-    --cor-texto-suave: #3b5045;
-    --cor-borda: #c3d3c9;
-    --cor-borda-forte: #5b7466;
+    --cor-texto: #101a26;
+    --cor-texto-suave: #3b4a5c;
+    --cor-borda: #c7d3e0;
+    --cor-borda-forte: #5a6f87;
 
-    --cor-primaria: #1f6b43;
-    --cor-primaria-hover: #14502f;
+    --cor-primaria: #0b5cad;
+    --cor-primaria-hover: #08407a;
     --cor-texto-primaria: #ffffff;
 
-    --cor-header-fundo: #dce8e0;
-    --cor-indicador: #12201a;
+    --cor-header-fundo: #dbe6f2;
+    --cor-indicador: #101a26;
 
-    --cor-foco: #0b57d0;
+    --cor-foco: #a84300;
     --cor-sucesso: #17703f;
     --cor-sucesso-fundo: #e3f5ea;
     --cor-erro: #b3261e;
     --cor-erro-fundo: #fdecea;
     --cor-info: #0b57d0;
     --cor-info-fundo: #e4eefc;
-    --cor-sombra: rgba(20, 40, 28, 0.12);
+    --cor-sombra: rgba(16, 40, 70, 0.12);
 
-    --cor-botao-borda: #12201a;
+    --cor-botao-borda: #101a26;
 }
 
 /* Medidas, durações e curvas  */
