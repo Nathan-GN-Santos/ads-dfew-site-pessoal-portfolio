@@ -1015,6 +1015,61 @@ footer {
     }
 }
 
+/* Até 639px: as tabelas viram "fichas" (uma por linha), sem rolagem lateral */
+@media (max-width: 39.99rem) {
+    /* Cada parte da tabela vira um bloco empilhado */
+    table,
+    tbody,
+    tr,
+    td {
+        display: block;
+    }
+
+    /* Cabeçalho escondido só visualmente (leitores de tela continuam lendo) */
+    thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+
+    /* Cada linha = uma ficha com faixa lateral na cor primária */
+    tr {
+        margin-top: var(--espaco-3);
+        background-color: var(--cor-superficie-alt);
+        border: 1px solid var(--cor-borda);
+        border-left: 6px solid var(--cor-primaria);
+        border-radius: var(--raio-sm);
+    }
+
+    td {
+        padding: var(--espaco-2) var(--espaco-3);
+        border-bottom: 0;
+        overflow-wrap: normal;   /* nenhuma palavra é quebrada no meio */
+        word-break: normal;
+        hyphens: manual;
+    }
+
+    td + td {
+        border-top: 1px solid var(--cor-borda);
+    }
+
+    /* Rótulo da coluna acima do valor (vem do atributo data-label do HTML) */
+    td::before {
+        content: attr(data-label);
+        content: attr(data-label) / "";
+        display: block;
+        margin-bottom: var(--espaco-1);
+        color: var(--cor-primaria);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+}
+
 /* A partir de 480px: menu em uma linha abaixo do nome, com abas inclinadas */
 @media (min-width: 30rem) {
     :root {
