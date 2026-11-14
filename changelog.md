@@ -38,16 +38,16 @@
 ### [0.3] - 06 - xx/10/2026 
 
 #### Checklist
-[] Adicionar JS
-[] Feature interativa com JavaScript e persistência em localStorage.
-[] Código em css/estilos.css e js/scripts.js.
-[] Modo claro e escuro
-[] Estilização do site
-[] Site publicado em GitHub Pages, Netlify ou Vercel com HTTPS - com todas as páginas no ar.
+[x] Adicionar JS
+[x] Feature interativa com JavaScript e persistência em localStorage.
+[x] Código em css/estilos.css e js/scripts.js.
+[x] Modo claro e escuro
+[x] Estilização do site
+[x] Site publicado em GitHub Pages, Netlify ou Vercel com HTTPS - com todas as páginas no ar.
 [] tag cp3-entrega 
 
 ##### JavaScript
-[] Uma feature interativa com persistência em localStorage — os dados devem continuar lá após recarregar a página.
+[x] Uma feature interativa com persistência em localStorage — os dados devem continuar lá após recarregar a página.
     [] Rascunho de formulário: salva o que foi digitado caso a página feche.
-    [] Tema claro/escuro: botão que alterna a paleta e lembra a escolha na próxima visita.
-[] Formulário com validação e feedback visível ao usuário (mensagem na tela, não só alert).
+    [x] Tema claro/escuro: botão que alterna a paleta e lembra a escolha na próxima visita.
+[x] Formulário com validação e feedback visível ao usuário (mensagem na tela, não só alert).
